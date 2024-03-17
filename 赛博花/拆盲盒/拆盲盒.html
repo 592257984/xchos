@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拆盲盒</title>
+<style>
+.hidden {
+    display: none;
+}
+
+.treasure-box {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 20px auto;
+    text-align: center;
+    top: 0px;
+}
+.treasure-box2 {
+    overflow: hidden; 
+    position: relative;
+    width: 1000px;
+    height: 500px;
+    margin: 20px auto;
+    text-align: center;
+    top: 0px;
+}
+
+.box-image {
+    width: 500px;
+    height: 500px;
+}
+
+.images {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    justify-content: start;
+    margin-top: 20px;
+    width: 2000px; /* Adjust based on your image sizes and count */
+    flex-wrap: nowrap;
+}
+
+.treasure-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 5px;
+    opacity: 0; /* Start hidden */
+    transition: opacity 1s ease; /* Smooth transition for opacity */
+}
+
+#openBtn {
+    position: relative;
+    width: 500px;
+    height: 100px;
+    top: 0px;
+    left: 0px;
+    font-size: 80px; 
+}
+
+/* Animation to fade in images */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fadeIn2 {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+@keyframes slideRight {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-1025px); }
+}
+@keyframes slideRight2 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(0); }
+}
+@keyframes slideRight3 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-175px);width: 500px;
+    height: 500px;}
+}
+</style>
+</head>
+<body>
+    <div class="treasure-box2">
+        <div class="images hidden">
+            <img src="image1.png" class="treasure-image">
+            <img src="image2.png" class="treasure-image">
+            <img src="image3.png" class="treasure-image">
+            <img src="image4.png" class="treasure-image">
+            <img src="image5.png" class="treasure-image">
+            <img src="image1.png" class="treasure-image">
+            <img src="image2.png" class="treasure-image">
+            <img src="image3.png" class="treasure-image">
+            <img src="image4.png" class="treasure-image">
+            <img src="image5.png" class="treasure-image">
+        </div>
+    </div>
+<div class="treasure-box">
+    
+    <img src="closed-box.png" id="closedBox" class="box-image">
+    <img src="opened-box.png" id="openedBox" class="box-image hidden">
+    <button id="openBtn">拆盲盒</button>
+</div>
+
+<script>
+document.getElementById('openBtn').addEventListener('click', function() {
+    this.style.display = 'none';
+    document.getElementById('closedBox').classList.add('hidden');
+    document.getElementById('openedBox').classList.remove('hidden');
+    const imagesDiv = document.querySelector('.images');
+    imagesDiv.classList.remove('hidden');
+
+    let delay = 500; // Start after 500ms
+
+    const treasureImages = document.querySelectorAll('.treasure-image');
+    treasureImages.forEach((img, index) => {
+        // Apply fadeIn animation with increasing delay for each image
+        setTimeout(() => {
+            img.style.opacity = 1; // Make image visible
+            img.style.animation = `fadeIn 1s ease forwards`;
+        }, delay);
+        delay += 50; // Increase delay for next image
+    });
+
+    // Start sliding animation after all images have faded in
+    setTimeout(() => {
+        imagesDiv.style.animation = 'slideRight 1.5s linear infinite';
+    }, delay);
+    setTimeout(() => {
+        imagesDiv.style.animation = 'slideRight 1s linear infinite';
+    }, 1000+delay);
+    setTimeout(() => {
+        imagesDiv.style.animation = 'slideRight 1.5s linear infinite';
+    },2500+delay);
+    setTimeout(() => {
+        imagesDiv.style.animation = 'slideRight2 0.5s linear infinite';
+    }, 3500+delay);
+    let disappearDelay = 4500 + delay;
+    treasureImages.forEach((img, index) => {
+        // Apply fadeIn animation with increasing delay for each image
+        if (index !== 2) {
+        setTimeout(() => {
+            img.style.opacity = 1; // Make image visible
+            img.style.animation = `fadeIn2 1s ease forwards`;
+        }, disappearDelay);
+        disappearDelay += 50; // Increase delay for next image
+    }
+    if (index == 2) {
+        setTimeout(() => {
+            imagesDiv.style.top='0%';
+            img.style.animation = `slideRight3 1s ease forwards`;
+        }, disappearDelay);
+        disappearDelay += 50; // Increase delay for next image
+    }
+    }, disappearDelay);
+
+    
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+/* style.css */
+.hidden {
+    display: none;
+}
+
+.treasure-box {
+    /* 定义宝箱的样式 */
+    position: relative;
+    width: 600px; /* 根据实际情况调整 */
+    height: 600px; /* 根据实际情况调整 */
+    top: 10px;
+    left: 300px;
+}
+.treasure-box2{
+    /* 定义宝箱的样式 */
+    position: relative;
+    width: 1500px; /* 根据实际情况调整 */
+    height: 600px; /* 根据实际情况调整 */
+    top: 100px;
+    left: 150px;
+}
+#openBtn {
+    /* 定义宝箱的样式 */
+    position: relative;
+    width: 700px; /* 根据实际情况调整 */
+    height: 100px; /* 根据实际情况调整 */
+    top: 0px;
+    left: 50px;
+    font-size: 80px; 
+}
+
+.treasure-image {
+    /* 定义图片的基本样式，确保它们能够交叠并旋转 */
+    position: relative; /* 使动画能够正常工作 */
+    width: 200px; /* 根据实际情况调整 */
+    height: 200px; /* 根据实际情况调整 */
+    margin: 10px;
+    opacity: 0; /* 初始状态不可见 */
+
+    
+    
+    
+}
+
+  
+  /* 为每张图片设置不同的动画延迟 */
+  .treasure-image:nth-child(1) { animation-delay: 0.5s; animation: fadeIn ;}
+  .treasure-image:nth-child(2) { animation-delay: 1s; animation: fadeIn ;}
+  .treasure-image:nth-child(3) { animation-delay: 1.5s; animation: fadeIn ;}
+  .treasure-image:nth-child(4) { animation-delay: 2s; animation: fadeIn ;}
+  .treasure-image:nth-child(5) { animation-delay: 2.5s; animation: fadeIn ;}
+
+.box-image {
+    /* 定义宝箱图片的基本样式 */
+    width: 800px; /* 根据实际情况调整 */
+    height: 800px; /* 根据实际情况调整 */
+}
+/* style.css */
+
+/* 其他样式保持不变 */
+
+.images {
+    display: flex;
+    overflow: hidden; /* 隐藏超出容器部分的图片 */
+    position: relative;
+    width: 80%; /* 确保图片容器宽度适应屏幕 */
+    height: 80%;
+}
+
+
+
+@keyframes appear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes disappear {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+/* 关键帧动画定义 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  
+  
